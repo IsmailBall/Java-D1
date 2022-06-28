@@ -4,11 +4,9 @@ import Abstract.CustomerService;
 import Adapter.LocalCheckFunction;
 import Concrete.BuyAndSellManager;
 import Concrete.CustomerManager;
+import Entities.CampaignManager;
 import Entities.Customer;
 import Entities.Game;
-import Entities.NoCampaign;
-import Entities.SummerCampaign;
-import Entities.WinterCamgaign;
 
 public class Main {
 	
@@ -18,8 +16,9 @@ public class Main {
 		
 		Game game = new Game("CS GO", 300, 12);
 		Customer customer = customerService.getCustomer(2);
+		CampaignService campaignService = new CampaignManager("WinterCampaign", 25);
 		
-		BuyAndSellerService buyAndSellerService = new BuyAndSellManager(new NoCampaign(), customerService);
+		BuyAndSellerService buyAndSellerService = new BuyAndSellManager(campaignService, customerService);
 		
 		
 		buyAndSellerService.buyGame(game,customer);
